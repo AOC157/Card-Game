@@ -2,9 +2,10 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Game {
-    public Card kingCard;
+    public char kingCard;
     public Player kingPlayer;
     Player you = new Player();
     Player player1 = new Player();
@@ -56,6 +57,7 @@ public class Game {
                 this.kingPlayer = this.player3;
                 break;
         }
+        System.out.println("king is player" + playerNumber);
     }
 
     public void giveCards( int givenCardNumber) {
@@ -90,4 +92,53 @@ public class Game {
     }
 
 
+    public void declareKingCard() {
+        if(this.kingPlayer.equals(you)){
+            Scanner scanner = new Scanner(System.in);
+            kingCard = scanner.nextLine().charAt(0);
+        }
+        else{
+            kingCard = declareKingCardForCom(kingPlayer.playerCard);
+        }
+        System.out.println("king card type is " + kingCard);
+    }
+
+    private char declareKingCardForCom(ArrayList<Card> playerCard) {
+        int dtype = 0;
+        int gtype = 0;
+        int ptype = 0;
+        int ktype = 0;
+        for (Card card : playerCard) {
+            switch (card.type) {
+                case 'd':
+                    dtype++;
+                    break;
+                case 'g':
+                    gtype++;
+                    break;
+                case 'p':
+                    ptype++;
+                    break;
+                case 'k':
+                    ktype++;
+                    break;
+            }
+        }
+        int max1 = Math.max(dtype,gtype);
+        int max2 = Math.max(ptype,ktype);
+        int finalMax = Math.max(max1,max2);
+
+        if (finalMax == dtype){
+            return 'd';
+        }
+        else if (finalMax == gtype){
+            return 'g';
+        }
+        else if (finalMax == ptype){
+            return 'p';
+        }
+        return 'k';
+
+
+    }
 }
