@@ -58,11 +58,10 @@ public class Game {
         }
     }
 
-    public void declareHokm() {
+    public void declareHokm(int cardNumber , int givenCardNumber) {
         Random random = new Random();
-        int cardNumber = 52;
         int playerNumber = 0;
-        for(int counter = 1; counter <= 5; counter++){
+        for(int counter = 1; counter <= givenCardNumber; counter++){
             int index = random.nextInt(cardNumber);
             cardNumber--;
             switch (playerNumber) {
@@ -80,14 +79,12 @@ public class Game {
                     break;
             }
             this.cards.remove(index);
-            if (counter == 5) {
+            if (counter == givenCardNumber) {
                 playerNumber++;
                 if (playerNumber <= 3) {
                     counter = 0;
                 }
             }
-
-
         }
     }
 }
