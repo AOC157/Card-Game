@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
-    public Card hokm;
-    public Player hakem;
+    public Card kingCard;
+    public Player kingPlayer;
     Player you = new Player();
     Player player1 = new Player();
     Player player2 = new Player();
@@ -39,27 +39,28 @@ public class Game {
     }
 
 
-    public void declareHakem() {
+    public void declareKingPlayer() {
         Random random = new Random();
         int playerNumber = random.nextInt(4);
         switch (playerNumber) {
             case 0:
-                this.hakem = this.you;
+                this.kingPlayer = this.you;
                 break;
             case 1:
-                this.hakem = this.player1;
+                this.kingPlayer = this.player1;
                 break;
             case 2:
-                this.hakem = this.player2;
+                this.kingPlayer = this.player2;
                 break;
             case 3:
-                this.hakem = this.player3;
+                this.kingPlayer = this.player3;
                 break;
         }
     }
 
-    public void declareHokm(int cardNumber , int givenCardNumber) {
+    public void giveCards( int givenCardNumber) {
         Random random = new Random();
+        int cardNumber = this.cards.size();
         int playerNumber = 0;
         for(int counter = 1; counter <= givenCardNumber; counter++){
             int index = random.nextInt(cardNumber);
@@ -87,4 +88,6 @@ public class Game {
             }
         }
     }
+
+
 }
