@@ -10,23 +10,23 @@ public class Game {
     Player player1 = new Player();
     Player player2 = new Player();
     Player player3 = new Player();
-    public ArrayList<String> cards = new ArrayList<>();
+    public ArrayList<Card> cards = new ArrayList<>();
 
     public Game() {
         int counter = 1;
         for (int number = 1; number <= 13; number++) {
             switch (counter) {
                 case 1:
-                    cards.add(number + "d");
+                    cards.add(new Card('d' , number));
                     break;
                 case 2:
-                    cards.add(number + "g");
+                    cards.add(new Card('g' , number));
                     break;
                 case 3:
-                    cards.add(number + "p");
+                    cards.add(new Card('p' , number));
                     break;
                 case 4:
-                    cards.add(number + "k");
+                    cards.add(new Card('k' , number));
                     break;
             }
             if (number == 13) {
@@ -58,4 +58,36 @@ public class Game {
         }
     }
 
+    public void declareHokm() {
+        Random random = new Random();
+        int cardNumber = 52;
+        int playerNumber = 0;
+        for(int counter = 1; counter <= 5; counter++){
+            int index = random.nextInt(cardNumber);
+            cardNumber--;
+            switch (playerNumber) {
+                case 0:
+                    this.you.playerCard.add(this.cards.get(index));
+                    break;
+                case 1:
+                    this.player1.playerCard.add(this.cards.get(index));
+                    break;
+                case 2:
+                    this.player2.playerCard.add(this.cards.get(index));
+                    break;
+                case 3:
+                    this.player3.playerCard.add(this.cards.get(index));
+                    break;
+            }
+            this.cards.remove(index);
+            if (counter == 5) {
+                playerNumber++;
+                if (playerNumber <= 3) {
+                    counter = 0;
+                }
+            }
+
+
+        }
+    }
 }
