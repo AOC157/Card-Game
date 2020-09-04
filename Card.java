@@ -1,5 +1,11 @@
 package com.company;
 
 public class Card {
-    private char type;
+    public char type;
+    public int number;
+
+    public Card(char type, int number) {
+        this.type = type;
+        this.number = number;
+    }
 }
