@@ -104,41 +104,125 @@ public class Game {
     }
 
     private char declareKingCardForCom(ArrayList<Card> playerCard) {
-        int dtype = 0;
-        int gtype = 0;
-        int ptype = 0;
-        int ktype = 0;
+        int dType = 0;
+        int gType = 0;
+        int pType = 0;
+        int kType = 0;
         for (Card card : playerCard) {
             switch (card.type) {
                 case 'd':
-                    dtype++;
+                    dType++;
                     break;
                 case 'g':
-                    gtype++;
+                    gType++;
                     break;
                 case 'p':
-                    ptype++;
+                    pType++;
                     break;
                 case 'k':
-                    ktype++;
+                    kType++;
                     break;
             }
         }
-        int max1 = Math.max(dtype,gtype);
-        int max2 = Math.max(ptype,ktype);
-        int finalMax = Math.max(max1,max2);
+        int max1;
+        int max2;
+        char tempType1;
+        char tempType2;
 
-        if (finalMax == dtype){
-            return 'd';
+        if (dType != gType){
+            max1 = Math.max(dType,gType);
+            tempType1 = (max1 == dType)? 'd' : 'g';
         }
-        else if (finalMax == gtype){
-            return 'g';
+        else{
+            tempType1 = maxNumber(playerCard,'d','g');
+            max1 = (tempType1 == 'd')? dType : gType;
         }
-        else if (finalMax == ptype){
-            return 'p';
+        if(pType != kType){
+            max2 = Math.max(pType,kType);
+            tempType2 = (max1 == pType)? 'p' : 'k';
         }
-        return 'k';
+        else{
+            tempType2 = maxNumber(playerCard,'p','k');
+            max2 = (tempType2 == 'p')? pType : kType;
+        }
+        if(max1 != max2){
+            int finalMax = Math.max(max1,max2);
+            return (finalMax == max1)? tempType1 : tempType2;
+        }
+        else {
+            return maxNumber(playerCard,tempType1,tempType2);
+        }
+    }
 
-
+    private char maxNumber(ArrayList<Card> playerCard, char alpha, char beta) {
+        for (Card card : playerCard) {
+            if (card.type == alpha && card.number == 1) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 1) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 13) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 13) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 12) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 12) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 11) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 11) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 10) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 10) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 9) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 9) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 8) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 8) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 7) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 7) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 6) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 6) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 5) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 5) {
+                return beta;
+            }
+            if (card.type == alpha && card.number == 4) {
+                return alpha;
+            }
+            if (card.type == beta && card.number == 4) {
+                return beta;
+            }
+        }
+        return alpha;
     }
 }
