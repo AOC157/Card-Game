@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Player {
     ArrayList<Card> playerCard;
@@ -17,10 +18,47 @@ public class Player {
         }
         System.out.println();
     }
+    public Card playTurn(char kingCard,Card start) {
+        ArrayList<Integer> difference = new ArrayList<>();
+        if(isThereType(start.type)){
+            for(Card card : playerCard){
+                if(card.type == start.type){
+                    difference.add(card.number - start.number);
+                }
+            }
+            Collections.sort(difference);
+            if(difference.get(0) < 0){
+                return minOfSpecialType(start.type);
+            }
+        }
+        else if(isThereType(kingCard)){
+            return minOfSpecialType(kingCard);
+        }
+        return minOfAllCards();
+    }
+
+    private Card minOfAllCards() {
+        Card min = playerCard.get(0);
+        for (Card card : playerCard){
+            if(card.number < min.number){
+                min = card;
+            }
+        }
+        return min;
+    }
+
+    private boolean isThereType(char type) {
+        for(Card card : playerCard){
+            if(card.type == type){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Card playTurn(char kingCard) {
         if(allCardsIsKing(kingCard)){
-            return minOfKingCards();
+            return minOfSpecialType(kingCard);
         }
         ArrayList<Card> noKingCards = new ArrayList<>();
         for(Card card : playerCard){
@@ -31,10 +69,16 @@ public class Player {
         return maxOfNoKingCards(noKingCards);
     }
 
-    private Card minOfKingCards() {
-        Card min = playerCard.get(0);
-        for(Card card : playerCard){
-            if(card.number < min.number){
+    private Card minOfSpecialType(char type) {
+        Card min = null;
+        for (Card card : playerCard){
+            if(card.type == type){
+                min = card;
+                break;
+            }
+        }
+        for (Card card : playerCard){
+            if(card.type == type && card.number < min.number){
                 min = card;
             }
         }
