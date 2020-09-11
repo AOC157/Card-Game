@@ -18,24 +18,28 @@ public class Player {
         }
         System.out.println();
     }
-    public Card playTurn(char kingCard,Card start) {
-        ArrayList<Integer> difference = new ArrayList<>();
-        if(isThereType(start.type)){
-            for(Card card : playerCard){
-                if(card.type == start.type){
-                    difference.add(card.number - start.number);
-                }
-                else{
-                    difference.add(100);
-                }
-            }
-            Collections.sort(difference);
-            if(difference.get(0) < 0){
+    public Card playTurn(char kingCard,Card start,Card card1) {
+        if(start.isBigger(card1,kingCard)){
+            if(isThereType(start.type)){
                 return minOfSpecialType(start.type);
             }
             else{
-                return minCardInSameTypeBiggerThan(difference,start);
+                return minOfAllCards();
             }
+        }
+        else {
+            if(isThereType(start.type)){
+                return minCardInSameTypeBiggerThan(card1);
+            }
+            else if(isThereType(kingCard)){
+                return minOfSpecialType(kingCard);
+            }
+        }
+        return minOfAllCards();
+    }
+    public Card playTurn(char kingCard,Card start) {
+        if(isThereType(start.type)){
+            return minCardInSameTypeBiggerThan(start);
         }
         else if(isThereType(kingCard)){
             return minOfSpecialType(kingCard);
@@ -43,11 +47,15 @@ public class Player {
         return minOfAllCards();
     }
 
-    private Card minCardInSameTypeBiggerThan(ArrayList<Integer> difference, Card start) {
-        for (int index = 0; index < difference.size(); index++){
-            if(difference.get(index) > 0){
-                return playerCard.get(index);
+    private Card minCardInSameTypeBiggerThan(Card start) {
+        Card min = playerCard.get(0);
+        for(Card card : playerCard){
+            if(card.type == start.type && card.number > start.number){
+                min = card;
             }
+        }
+        if(min.type != start.type){
+            return min;
         }
         return null;
     }
