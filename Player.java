@@ -25,16 +25,31 @@ public class Player {
                 if(card.type == start.type){
                     difference.add(card.number - start.number);
                 }
+                else{
+                    difference.add(100);
+                }
             }
             Collections.sort(difference);
             if(difference.get(0) < 0){
                 return minOfSpecialType(start.type);
+            }
+            else{
+                return minCardInSameTypeBiggerThan(difference,start);
             }
         }
         else if(isThereType(kingCard)){
             return minOfSpecialType(kingCard);
         }
         return minOfAllCards();
+    }
+
+    private Card minCardInSameTypeBiggerThan(ArrayList<Integer> difference, Card start) {
+        for (int index = 0; index < difference.size(); index++){
+            if(difference.get(index) > 0){
+                return playerCard.get(index);
+            }
+        }
+        return null;
     }
 
     private Card minOfAllCards() {
