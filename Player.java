@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Player {
     ArrayList<Card> playerCard;
@@ -18,13 +17,46 @@ public class Player {
         }
         System.out.println();
     }
-    public Card playTurn(char kingCard,Card start,Card card1) {
-        if(start.isBigger(card1,kingCard)){
+    public Card playTurn(char kingCard,Card start,Card card1,Card card2) {
+        if(!start.isBigger(card1,kingCard) && card1.isBigger(card2,kingCard)){
             if(isThereType(start.type)){
                 return minOfSpecialType(start.type);
             }
             else{
-                return minOfAllCards();
+                return minOfAllCardsExceptKing(kingCard);
+            }
+        }
+        Card bigger = (start.isBigger(card2,kingCard)) ? start : card2;
+        if(isThereType(bigger.type)){
+            return minOfSpecialType(bigger.type);
+        }
+        else if(isThereType(kingCard)){
+            return minOfSpecialType(kingCard);
+        }
+
+        return minOfAllCardsExceptKing(kingCard);
+    }
+
+    private Card minOfAllCardsExceptKing(char kingCard) {
+        Card min = null;
+        for(Card card : playerCard){
+            if(card.type != kingCard){
+                min = card;
+                break;
+            }
+        }
+        for (Card card : playerCard){
+            if(card.number < min.number && card.type != kingCard){
+                min = card;
+            }
+        }
+        return min;
+    }
+
+    public Card playTurn(char kingCard,Card start,Card card1) {
+        if(start.isBigger(card1,kingCard)){
+            if(isThereType(start.type)){
+                return minOfSpecialType(start.type);
             }
         }
         else {
@@ -54,7 +86,7 @@ public class Player {
                 min = card;
             }
         }
-        if(min.type != start.type){
+        if(min.type == start.type){
             return min;
         }
         return null;
