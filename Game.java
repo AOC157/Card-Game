@@ -7,13 +7,21 @@ import java.util.Scanner;
 public class Game {
     public char kingCard;
     public Player kingPlayer;
-    Player you = new Player();
-    Player player1 = new Player();
-    Player player2 = new Player();
-    Player player3 = new Player();
-    public ArrayList<Card> cards = new ArrayList<>();
+    public Player you;
+    public Player player1;
+    public Player player2;
+    public Player player3;
+    public ArrayList<Card> cards;
+    public Player turnKing;
 
     public Game() {
+        you = new Player();
+        player1 = new Player();
+        player2 = new Player();
+        player3 = new Player();
+        cards = new ArrayList<>();
+        turnKing = new Player();
+        
         int counter = 1;
         for (int number = 1; number <= 13; number++) {
             switch (counter) {
@@ -156,12 +164,6 @@ public class Game {
 
     private char maxNumber(ArrayList<Card> playerCard, char alpha, char beta) {
         for (Card card : playerCard) {
-            if (card.type == alpha && card.number == 1) {
-                return alpha;
-            }
-            if (card.type == beta && card.number == 1) {
-                return beta;
-            }
             if (card.type == alpha && card.number == 13) {
                 return alpha;
             }
@@ -224,5 +226,55 @@ public class Game {
             }
         }
         return alpha;
+    }
+
+    public int numberOfPlayerAfterTurnKing() {
+        if (you.equals(turnKing)) {
+            return 1;
+        }
+        if (player1.equals(turnKing)) {
+            return 2;
+        }
+        if (player2.equals(turnKing)) {
+            return 3;
+        }
+        return 0;
+    }
+
+    public Player convertNumberToPlayer(int playerNumber) {
+        switch (playerNumber){
+            case 0:
+                return you;
+            case 1:
+                return player1;
+            case 2:
+                return player2;
+        }
+        return player3;
+    }
+
+    public Player defineWinner(Player turnKing, Card start, Card card1, Card card2, Card card3,char kingCard) {
+        if(start.isBigger(card1,kingCard) && start.isBigger(card2,kingCard) && start.isBigger(card3,kingCard)){
+            return turnKing;
+        }
+        else if(!start.isBigger(card1,kingCard) && card1.isBigger(card2,kingCard) && card1.isBigger(card3,kingCard)){
+            return convertNumberToPlayer(numberOfPlayerAfterTurnKing());
+        }
+        else if(!start.isBigger(card2,kingCard) && !card1.isBigger(card2,kingCard) && card2.isBigger(card3,kingCard)){
+            return  convertNumberToPlayer(numberOfPlayerAfterTurnKing() + 1);
+        }
+        return convertNumberToPlayer(numberOfPlayerAfterTurnKing() + 2);
+    }
+
+    public boolean finishCheck() {
+        if(you.score + player2.score == 7){
+            System.out.println("your team won");
+            return true;
+        }
+        if(player1.score + player3.score == 7){
+            System.out.println("your team lost");
+            return true;
+        }
+        return false;
     }
 }
