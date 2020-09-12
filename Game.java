@@ -244,10 +244,13 @@ public class Game {
     public Player convertNumberToPlayer(int playerNumber) {
         switch (playerNumber){
             case 0:
+            case 4:
                 return you;
             case 1:
+            case 5:
                 return player1;
             case 2:
+            case 6:
                 return player2;
         }
         return player3;
