@@ -25,23 +25,61 @@ public class Main {
 
         game.turnKing = game.kingPlayer;
 
-        while (true){
-            Card start = game.turnKing.playTurn();
-            int playerNumber = game.whoseTurn();
-            Player momentPlayer = game.convertNumberToPlayer(playerNumber);
-            Card card1 = momentPlayer.playTurn(start);
-            momentPlayer = game.convertNumberToPlayer(playerNumber++);
-            Card card2 = momentPlayer.playTurn(start, card1);
-            momentPlayer = game.convertNumberToPlayer(playerNumber + 1);
-            Card card3 = momentPlayer.playTurn(start, card1, card2);
+        Card start;
+        Card card1;
+        Card card2;
+        Card card3;
 
-            Player winner = game.defineWinner(game.turnKing,start,card1,card2,card3);
+        while (true){
+            int playerNumber = game.numberOfPlayerAfterTurnKing();
+
+            if(!game.you.equals(game.kingPlayer)) {
+                start = game.turnKing.playTurn(game.kingCard);
+            }
+            else{
+                start = game.you.playTurn();
+            }
+            start.show();
+            game.turnKing.playerCard.remove(start);
+
+            Player momentPlayer = game.convertNumberToPlayer(playerNumber);
+            if(!game.you.equals(momentPlayer)){
+                card1 = momentPlayer.playTurn(game.kingCard,start);
+            }
+            else{
+                card1 = game.you.playTurn();
+            }
+            card1.show();
+            momentPlayer.playerCard.remove(card1);
+
+            momentPlayer = game.convertNumberToPlayer(playerNumber++);
+            if(!game.you.equals(momentPlayer)){
+                card2 = momentPlayer.playTurn(game.kingCard,start, card1);
+            }
+            else{
+                card2 = game.you.playTurn();
+            }
+            card2.show();
+            momentPlayer.playerCard.remove(card2);
+
+            momentPlayer = game.convertNumberToPlayer(playerNumber + 1);
+            if(!game.you.equals(momentPlayer)){
+                card3 = momentPlayer.playTurn(game.kingCard,start, card1, card2);
+            }
+            else{
+                card3 = game.you.playTurn();
+            }
+            card3.show();
+            momentPlayer.playerCard.remove(card3);
+
+            Player winner = game.defineWinner(game.turnKing,start,card1,card2,card3,game.kingCard);
             winner.score++;
 
-            if(game.finishCheck()) break;
+            if(game.finishCheck()) {
+                break;
+            }
 
             game.turnKing = winner;
         }
-
     }
 }
