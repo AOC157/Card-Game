@@ -23,18 +23,50 @@ public class Player {
                 return minOfSpecialType(start.type);
             }
             else{
-                return minOfAllCardsExceptKing(kingCard);
+                try {
+                    return minOfAllCardsExceptKing(kingCard);
+                }
+                catch (NullPointerException n){
+                    return minOfAllCards();
+                }
             }
         }
         Card bigger = (start.isBigger(card2,kingCard)) ? start : card2;
-        if(isThereType(bigger.type)){
-            return minOfSpecialType(bigger.type);
+        boolean cut = (bigger.type == kingCard && start.type != kingCard);
+        if(cut){
+            if(isThereType(start.type)){
+                return minOfSpecialType(start.type);
+            }
+            else {
+                try{
+                    return minCardInSameTypeBiggerThan(bigger);
+                }
+                catch (NullPointerException n){
+                    try {
+                        return minOfAllCardsExceptKing(kingCard);
+                    }
+                    catch (NullPointerException ne){
+                        return minOfAllCards();
+                    }
+                }
+            }
         }
-        else if(isThereType(kingCard)){
-            return minOfSpecialType(kingCard);
+        else{
+            if(isThereType(start.type)){
+                try {
+                    return minCardInSameTypeBiggerThan(bigger);
+                }
+                catch (NullPointerException n){
+                    return minOfSpecialType(start.type);
+                }
+            }
+            else {
+                if(isThereType(kingCard)){
+                    return minOfSpecialType(kingCard);
+                }
+            }
         }
-
-        return minOfAllCardsExceptKing(kingCard);
+        return minOfAllCards();
     }
 
     private Card minOfAllCardsExceptKing(char kingCard) {
@@ -58,20 +90,54 @@ public class Player {
             if(isThereType(start.type)){
                 return minOfSpecialType(start.type);
             }
+            else{
+                try {
+                    return minOfAllCardsExceptKing(kingCard);
+                }
+                catch (NullPointerException n){
+                    return minOfAllCards();
+                }
+            }
         }
-        else {
+        boolean cut = (card1.type == kingCard && start.type != kingCard);
+        if(cut){
             if(isThereType(start.type)){
-                return minCardInSameTypeBiggerThan(card1);
+                return minOfSpecialType(start.type);
             }
             else if(isThereType(kingCard)){
-                return minOfSpecialType(kingCard);
+                try {
+                    return minCardInSameTypeBiggerThan(card1);
+                }
+                catch (NullPointerException n){
+                    return minOfAllCardsExceptKing(kingCard);
+                }
+            }
+        }
+        else{
+            if(isThereType(start.type)){
+                try {
+                    return minCardInSameTypeBiggerThan(card1);
+                }
+                catch (NullPointerException n){
+                    return minOfSpecialType(start.type);
+                }
+            }
+            else{
+                if(isThereType(kingCard)){
+                    return minOfSpecialType(kingCard);
+                }
             }
         }
         return minOfAllCards();
     }
     public Card playTurn(char kingCard,Card start) {
         if(isThereType(start.type)){
-            return minCardInSameTypeBiggerThan(start);
+            try {
+                return minCardInSameTypeBiggerThan(start);
+            }
+            catch (NullPointerException n){
+                return minOfSpecialType(start.type);
+            }
         }
         else if(isThereType(kingCard)){
             return minOfSpecialType(kingCard);
