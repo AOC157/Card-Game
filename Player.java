@@ -199,8 +199,13 @@ public class Player {
             }
         }
         for (Card card : playerCard){
-            if(card.type == type && card.number < min.number){
-                min = card;
+            try {
+                if (card.type == type && card.number < min.number) {
+                    min = card;
+                }
+            }
+            catch (NullPointerException n){
+                return null;
             }
         }
         return min;
