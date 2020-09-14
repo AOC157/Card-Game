@@ -33,7 +33,10 @@ public class Player {
             }
             else{
                 try {
-                    return minOfAllCardsExceptKing(kingCard);
+                    Card card;
+                    card = minOfAllCardsExceptKing(kingCard);
+                    int nullTest = card.number;
+                    return card;
                 }
                 catch (NullPointerException n){
                     return minOfAllCards();
@@ -48,11 +51,17 @@ public class Player {
             }
             else {
                 try{
-                    return minCardInSameTypeBiggerThan(bigger);
+                    Card card;
+                    card = minCardInSameTypeBiggerThan(bigger);
+                    int nullTest = card.number;
+                    return card;
                 }
                 catch (NullPointerException n){
                     try {
-                        return minOfAllCardsExceptKing(kingCard);
+                        Card card;
+                        card = minOfAllCardsExceptKing(kingCard);
+                        int nullTest = card.number;
+                        return card;
                     }
                     catch (NullPointerException ne){
                         return minOfAllCards();
@@ -63,7 +72,10 @@ public class Player {
         else{
             if(isThereType(start.type)){
                 try {
-                    return minCardInSameTypeBiggerThan(bigger);
+                    Card card;
+                    card = minCardInSameTypeBiggerThan(bigger);
+                    int nullTest = card.number;
+                    return card;
                 }
                 catch (NullPointerException n){
                     return minOfSpecialType(start.type);
@@ -87,8 +99,13 @@ public class Player {
             }
         }
         for (Card card : playerCard){
-            if(card.number < min.number && card.type != kingCard){
-                min = card;
+            try {
+                if (card.number < min.number && card.type != kingCard) {
+                    min = card;
+                }
+            }
+            catch (NullPointerException n){
+                return null;
             }
         }
         return min;
@@ -101,7 +118,10 @@ public class Player {
             }
             else{
                 try {
-                    return minOfAllCardsExceptKing(kingCard);
+                    Card card;
+                    card = minOfAllCardsExceptKing(kingCard);
+                    int nullTest = card.number;
+                    return card;
                 }
                 catch (NullPointerException n){
                     return minOfAllCards();
@@ -115,7 +135,10 @@ public class Player {
             }
             else if(isThereType(kingCard)){
                 try {
-                    return minCardInSameTypeBiggerThan(card1);
+                    Card card;
+                    card = minCardInSameTypeBiggerThan(card1);
+                    int nullTest = card.number;
+                    return card;
                 }
                 catch (NullPointerException n){
                     return minOfAllCardsExceptKing(kingCard);
@@ -124,8 +147,11 @@ public class Player {
         }
         else{
             if(isThereType(start.type)){
+                Card card;
                 try {
-                    return minCardInSameTypeBiggerThan(card1);
+                    card = minCardInSameTypeBiggerThan(card1);
+                    int nullTest = card.number;
+                    return card;
                 }
                 catch (NullPointerException n){
                     return minOfSpecialType(start.type);
@@ -140,9 +166,12 @@ public class Player {
         return minOfAllCards();
     }
     public Card playTurn(char kingCard,Card start) {
+        Card card;
         if(isThereType(start.type)){
             try {
-                return minCardInSameTypeBiggerThan(start);
+                card = minCardInSameTypeBiggerThan(start);
+                int nullTest = card.number;
+                return card;
             }
             catch (NullPointerException n){
                 return minOfSpecialType(start.type);
@@ -234,9 +263,6 @@ public class Player {
         for(Card card : noKingCards){
             if(card.number > max.number){
                 max = card;
-            }
-            if(card.number == 1){
-                return card;
             }
         }
         return max;
