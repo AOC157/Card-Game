@@ -14,13 +14,15 @@ public class Player {
 
     public void printAllCards() {
         for (Card card : playerCard) {
-            System.out.print(card.number + " " + card.type + "***");
+            System.out.print(card.number + "" + card.type + "   ");
         }
         System.out.println();
     }
     public Card playTurn() {
         Scanner scanner = new Scanner(System.in);
+        System.out.print("input number of your card (1 - 13): ");
         int cardNumber = scanner.nextInt();
+        System.out.print("input type of your card (g , k , p , d): ");
         char cardType = scanner.next().charAt(0);
         System.out.print('*');
         return new Card(cardType , cardNumber);
