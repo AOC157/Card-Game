@@ -33,7 +33,7 @@ public class Main {
         while (true){
             int playerNumber = game.numberOfPlayerAfterTurnKing();
 
-            if(!game.you.equals(game.kingPlayer)) {
+            if(!game.you.equals(game.turnKing)) {
                 start = game.turnKing.playTurn(game.kingCard);
             }
             else{
@@ -52,7 +52,7 @@ public class Main {
             card1.show();
             momentPlayer.playerCard.remove(card1);
 
-            momentPlayer = game.convertNumberToPlayer(playerNumber++);
+            momentPlayer = game.convertNumberToPlayer(++playerNumber);
             if(!game.you.equals(momentPlayer)){
                 card2 = momentPlayer.playTurn(game.kingCard,start, card1);
             }
@@ -73,13 +73,22 @@ public class Main {
             momentPlayer.playerCard.remove(card3);
 
             Player winner = game.defineWinner(game.turnKing,start,card1,card2,card3,game.kingCard);
+
             winner.score++;
+
+            if(winner.equals(game.you) || winner.equals(game.player2)){
+                System.out.println("your team won this turn");
+            }
+            else{
+                System.out.println("your team lost this turn");
+            }
 
             if(game.finishCheck()) {
                 break;
             }
 
             game.turnKing = winner;
+            game.you.printAllCards();
         }
     }
 }
