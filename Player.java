@@ -267,4 +267,13 @@ public class Player {
         }
         return max;
     }
+
+    public void deleteCard(Card myCard) {
+        for (Card card : playerCard){
+            if(myCard.number == card.number && myCard.type == card.type){
+                playerCard.remove(card);
+                return;
+            }
+        }
+    }
 }
