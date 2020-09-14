@@ -77,11 +77,14 @@ public class Main {
             winner.score++;
 
             if(winner.equals(game.you) || winner.equals(game.player2)){
-                System.out.println("your team won this turn");
+                System.out.print("your team won this turn");
             }
             else{
-                System.out.println("your team lost this turn");
+                System.out.print("your team lost this turn");
             }
+            int myTeamScore = game.you.score + game.player2.score;
+            int rivalScore = game.player1.score + game.player3.score;
+            System.out.println("(* " + myTeamScore + "  :  " + rivalScore + ")");
 
             if(game.finishCheck()) {
                 break;
