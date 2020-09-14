@@ -35,42 +35,46 @@ public class Main {
 
             if(!game.you.equals(game.turnKing)) {
                 start = game.turnKing.playTurn(game.kingCard);
+                game.turnKing.playerCard.remove(start);
             }
             else{
                 start = game.you.playTurn();
+                game.you.deleteCard(start);
             }
             start.show();
-            game.turnKing.playerCard.remove(start);
 
             Player momentPlayer = game.convertNumberToPlayer(playerNumber);
             if(!game.you.equals(momentPlayer)){
                 card1 = momentPlayer.playTurn(game.kingCard,start);
+                momentPlayer.playerCard.remove(card1);
             }
             else{
                 card1 = game.you.playTurn();
+                game.you.deleteCard(card1);
             }
             card1.show();
-            momentPlayer.playerCard.remove(card1);
 
             momentPlayer = game.convertNumberToPlayer(++playerNumber);
             if(!game.you.equals(momentPlayer)){
                 card2 = momentPlayer.playTurn(game.kingCard,start, card1);
+                momentPlayer.playerCard.remove(card2);
             }
             else{
                 card2 = game.you.playTurn();
+                game.you.deleteCard(card2);
             }
             card2.show();
-            momentPlayer.playerCard.remove(card2);
 
             momentPlayer = game.convertNumberToPlayer(playerNumber + 1);
             if(!game.you.equals(momentPlayer)){
                 card3 = momentPlayer.playTurn(game.kingCard,start, card1, card2);
+                momentPlayer.playerCard.remove(card3);
             }
             else{
                 card3 = game.you.playTurn();
+                game.you.deleteCard(card3);
             }
             card3.show();
-            momentPlayer.playerCard.remove(card3);
 
             Player winner = game.defineWinner(game.turnKing,start,card1,card2,card3,game.kingCard);
 
