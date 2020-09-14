@@ -147,7 +147,7 @@ public class Game {
         }
         if(pType != kType){
             max2 = Math.max(pType,kType);
-            tempType2 = (max1 == pType)? 'p' : 'k';
+            tempType2 = (max2 == pType)? 'p' : 'k';
         }
         else{
             tempType2 = maxNumber(playerCard,'p','k');
