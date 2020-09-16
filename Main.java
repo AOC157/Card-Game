@@ -35,7 +35,9 @@ public class Main {
 
             if(!game.you.equals(game.turnKing)) {
                 start = game.turnKing.playTurn(game.kingCard);
-                game.turnKing.playerCard.remove(start);
+                if(!game.turnKing.playerCard.remove(start)) {
+                    game.turnKing.deleteCard(start);
+                }
             }
             else{
                 start = game.you.playTurn();
@@ -46,7 +48,9 @@ public class Main {
             Player momentPlayer = game.convertNumberToPlayer(playerNumber);
             if(!game.you.equals(momentPlayer)){
                 card1 = momentPlayer.playTurn(game.kingCard,start);
-                momentPlayer.playerCard.remove(card1);
+                if(!momentPlayer.playerCard.remove(card1)) {
+                    momentPlayer.deleteCard(card1);
+                }
             }
             else{
                 card1 = game.you.playTurn();
@@ -57,7 +61,9 @@ public class Main {
             momentPlayer = game.convertNumberToPlayer(++playerNumber);
             if(!game.you.equals(momentPlayer)){
                 card2 = momentPlayer.playTurn(game.kingCard,start, card1);
-                momentPlayer.playerCard.remove(card2);
+                if(!momentPlayer.playerCard.remove(card2)) {
+                    momentPlayer.deleteCard(card2);
+                }
             }
             else{
                 card2 = game.you.playTurn();
@@ -68,7 +74,9 @@ public class Main {
             momentPlayer = game.convertNumberToPlayer(playerNumber + 1);
             if(!game.you.equals(momentPlayer)){
                 card3 = momentPlayer.playTurn(game.kingCard,start, card1, card2);
-                momentPlayer.playerCard.remove(card3);
+                if(!momentPlayer.playerCard.remove(card3)) {
+                    momentPlayer.deleteCard(card3);
+                }
             }
             else{
                 card3 = game.you.playTurn();
@@ -95,7 +103,11 @@ public class Main {
             }
 
             game.turnKing = winner;
+
             game.you.printAllCards();
+            game.player1.printAllCards();
+            game.player2.printAllCards();
+            game.player3.printAllCards();
         }
     }
 }
