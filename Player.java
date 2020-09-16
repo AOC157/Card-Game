@@ -186,14 +186,19 @@ public class Player {
     }
 
     private Card minCardInSameTypeBiggerThan(Card start) {
-        Card min = playerCard.get(0);
+        Card min = null;
         for(Card card : playerCard){
             if(card.type == start.type && card.number > start.number){
                 min = card;
             }
         }
-        if(min.type == start.type){
-            return min;
+        try {
+            if (min.type == start.type) {
+                return min;
+            }
+        }
+        catch (NullPointerException n){
+            return null;
         }
         return null;
     }
