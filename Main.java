@@ -45,7 +45,12 @@ public class Main {
                 }
             }
             else{
-                start = game.you.playTurn();
+                frame.createButtonList();
+                while (true){
+                    sleep(200);
+                    start = GUI.myCard;
+                    if(start != null) break;
+                }
                 game.you.deleteCard(start);
             }
             start.show();
@@ -58,7 +63,11 @@ public class Main {
                 }
             }
             else{
-                card1 = game.you.playTurn();
+                while (true){
+                    sleep(200);
+                    card1 = GUI.myCard;
+                    if(card1 != null) break;
+                }
                 game.you.deleteCard(card1);
             }
             card1.show();
@@ -71,7 +80,11 @@ public class Main {
                 }
             }
             else{
-                card2 = game.you.playTurn();
+                while (true){
+                    sleep(200);
+                    card2 = GUI.myCard;
+                    if(card2 != null) break;
+                }
                 game.you.deleteCard(card2);
             }
             card2.show();
@@ -84,7 +97,11 @@ public class Main {
                 }
             }
             else{
-                card3 = game.you.playTurn();
+                while (true){
+                    sleep(200);
+                    card3 = GUI.myCard;
+                    if(card3 != null) break;
+                }
                 game.you.deleteCard(card3);
             }
             card3.show();
