@@ -40,9 +40,7 @@ public class Main {
 
             if(!game.you.equals(game.turnKing)) {
                 start = game.turnKing.playTurn(game.kingCard);
-                if(!game.turnKing.playerCard.remove(start)) {
-                    game.turnKing.deleteCard(start);
-                }
+                game.turnKing.deleteCard(start);
             }
             else{
                 frame.createButtonList();
@@ -58,9 +56,8 @@ public class Main {
             Player momentPlayer = game.convertNumberToPlayer(playerNumber);
             if(!game.you.equals(momentPlayer)){
                 card1 = momentPlayer.playTurn(game.kingCard,start);
-                if(!momentPlayer.playerCard.remove(card1)) {
-                    momentPlayer.deleteCard(card1);
-                }
+                momentPlayer.deleteCard(card1);
+
             }
             else{
                 while (true){
@@ -75,9 +72,7 @@ public class Main {
             momentPlayer = game.convertNumberToPlayer(++playerNumber);
             if(!game.you.equals(momentPlayer)){
                 card2 = momentPlayer.playTurn(game.kingCard,start, card1);
-                if(!momentPlayer.playerCard.remove(card2)) {
-                    momentPlayer.deleteCard(card2);
-                }
+                momentPlayer.deleteCard(card2);
             }
             else{
                 while (true){
@@ -92,9 +87,7 @@ public class Main {
             momentPlayer = game.convertNumberToPlayer(playerNumber + 1);
             if(!game.you.equals(momentPlayer)){
                 card3 = momentPlayer.playTurn(game.kingCard,start, card1, card2);
-                if(!momentPlayer.playerCard.remove(card3)) {
-                    momentPlayer.deleteCard(card3);
-                }
+                momentPlayer.deleteCard(card3);
             }
             else{
                 while (true){
