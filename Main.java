@@ -1,8 +1,12 @@
 package com.company;
 
+import javax.swing.*;
+
+import static java.lang.Thread.sleep;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Game game = new Game();
 
         game.declareKingPlayer();
@@ -36,7 +40,10 @@ public class Main {
         frame.setVisible(true);
 
         while (true){
+
             int playerNumber = game.numberOfPlayerAfterTurnKing();
+
+
 
             if(!game.you.equals(game.turnKing)) {
                 start = game.turnKing.playTurn(game.kingCard);
@@ -123,6 +130,12 @@ public class Main {
             game.player1.printAllCards();
             game.player2.printAllCards();
             game.player3.printAllCards();
+
+            sleep(2000);
+
+            GUI.myCard = null;
+
+
         }
     }
 }
