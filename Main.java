@@ -30,6 +30,11 @@ public class Main {
         Card card2;
         Card card3;
 
+        GUI frame = new GUI(game);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setVisible(true);
+
         while (true){
             int playerNumber = game.numberOfPlayerAfterTurnKing();
 
