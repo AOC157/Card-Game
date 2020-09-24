@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
     private static final int FRAME_WIDTH = 500;
-    private static final int FRAME_HEIGHT = 200;
+    private static final int FRAME_HEIGHT = 270;
     public static Card myCard;
     Game game;
     JButton button;
