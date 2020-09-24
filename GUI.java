@@ -23,19 +23,30 @@ public class GUI extends JFrame {
     public GUI(Game game) throws HeadlessException, InterruptedException {
         this.game = game;
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        createButtonList();
+        createMyButtonList();
+
+        createTurnCardsButton();
+    }
+
+    private void createTurnCardsButton() {
         playersCardPanel = new JPanel();
+        playersCardPanel.setLayout(null);
 
-        start = new JButton("start");
-        card1 = new JButton("card1");
-        card2 = new JButton("card2");
-        card3 = new JButton("card3");
-        playersCardPanel.add(start,BorderLayout.SOUTH);
-        playersCardPanel.add(card1,BorderLayout.EAST);
-        playersCardPanel.add(card2,BorderLayout.NORTH);
-        playersCardPanel.add(card3,BorderLayout.WEST);
+        you = new JButton("you");
+        player1 = new JButton("player1");
+        player2 = new JButton("player2");
+        player3 =  new JButton("player3");
+        you.setBounds(205 , 130 , 70 ,40);
+        player1.setBounds(400, 65 , 70 , 40);
+        player2.setBounds(205, 10 , 70 , 40);
+        player3.setBounds(10, 65 , 70 , 40);
+
+        playersCardPanel.add(you);
+        playersCardPanel.add(player1);
+        playersCardPanel.add(player2);
+        playersCardPanel.add(player3);
+
         add(playersCardPanel,BorderLayout.CENTER);
-
     }
 
     public JButton makeButton(String card) {
@@ -45,7 +56,7 @@ public class GUI extends JFrame {
         return button;
     }
 
-    public void createButtonList(){
+    public void createMyButtonList(){
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 7));
         for(int index = 0; index < game.you.playerCard.size(); index++) {
