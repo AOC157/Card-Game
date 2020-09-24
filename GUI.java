@@ -98,7 +98,7 @@ public class GUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            panel.remove(button);
+            button.setVisible(false);
             myCard = convertStingToCard(card);
             panel.repaint();
         }
