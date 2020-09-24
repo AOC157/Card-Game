@@ -67,6 +67,22 @@ public class GUI extends JFrame {
         add(buttonPanel,BorderLayout.SOUTH);
     }
 
+    public void setButtonsText(Player player, Card card) {
+        String stringCard = card.convertCardToString();
+        if(player.equals(game.you)){
+            you.setText(stringCard);
+        }
+        if(player.equals(game.player1)){
+            player1.setText(stringCard);
+        }
+        if(player.equals(game.player2)){
+            player2.setText(stringCard);
+        }
+        if(player.equals(game.player3)){
+            player3.setText(stringCard);
+        }
+    }
+
 
     static class ButtonListener implements ActionListener{
 
