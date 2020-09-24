@@ -50,7 +50,6 @@ public class Main {
                 game.turnKing.deleteCard(start);
             }
             else{
-                frame.createButtonList();
                 while (true){
                     sleep(200);
                     start = GUI.myCard;
