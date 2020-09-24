@@ -14,10 +14,10 @@ public class GUI extends JFrame {
     JButton button;
     JPanel playersCardPanel;
     JPanel buttonPanel;
-    JButton start;
-    JButton card1;
-    JButton card2;
-    JButton card3;
+    JButton you;
+    JButton player1;
+    JButton player2;
+    JButton player3;
 
 
     public GUI(Game game) throws HeadlessException, InterruptedException {
