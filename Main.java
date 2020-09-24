@@ -58,6 +58,7 @@ public class Main {
                 }
                 game.you.deleteCard(start);
             }
+            frame.setButtonsText(game.turnKing , start);
             start.show();
 
             Player momentPlayer = game.convertNumberToPlayer(playerNumber);
@@ -74,6 +75,7 @@ public class Main {
                 }
                 game.you.deleteCard(card1);
             }
+            frame.setButtonsText(momentPlayer , card1);
             card1.show();
 
             momentPlayer = game.convertNumberToPlayer(++playerNumber);
@@ -89,6 +91,7 @@ public class Main {
                 }
                 game.you.deleteCard(card2);
             }
+            frame.setButtonsText(momentPlayer , card2);
             card2.show();
 
             momentPlayer = game.convertNumberToPlayer(playerNumber + 1);
@@ -104,6 +107,7 @@ public class Main {
                 }
                 game.you.deleteCard(card3);
             }
+            frame.setButtonsText(momentPlayer , card3);
             card3.show();
 
             Player winner = game.defineWinner(game.turnKing,start,card1,card2,card3,game.kingCard);
