@@ -135,6 +135,7 @@ public class Main {
             game.player3.printAllCards();
 
             sleep(2000);
+            frame.setButtonsTextEmpty();
 
             GUI.myCard = null;
 

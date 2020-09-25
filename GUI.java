@@ -83,6 +83,13 @@ public class GUI extends JFrame {
         }
     }
 
+    public void setButtonsTextEmpty() {
+        you.setText("");
+        player1.setText("");
+        player2.setText("");
+        player3.setText("");
+    }
+
 
     static class ButtonListener implements ActionListener{
 
