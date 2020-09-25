@@ -14,13 +14,13 @@ public class GUI extends JFrame {
     JButton button;
     JPanel playersCardPanel;
     JPanel buttonPanel;
-    JButton you;
-    JButton player1;
-    JButton player2;
-    JButton player3;
+    JButton yourCard;
+    JButton player1Card;
+    JButton player2Card;
+    JButton player3Card;
 
 
-    public GUI(Game game) throws HeadlessException, InterruptedException {
+    public GUI(Game game) throws HeadlessException {
         this.game = game;
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         createMyButtonList();
@@ -32,19 +32,19 @@ public class GUI extends JFrame {
         playersCardPanel = new JPanel();
         playersCardPanel.setLayout(null);
 
-        you = new JButton("you");
-        player1 = new JButton("player1");
-        player2 = new JButton("player2");
-        player3 =  new JButton("player3");
-        you.setBounds(205 , 240 , 70 ,40);
-        player1.setBounds(400, 125 , 70 , 40);
-        player2.setBounds(205, 10 , 70 , 40);
-        player3.setBounds(10, 125 , 70 , 40);
+        yourCard = new JButton("you");
+        player1Card = new JButton("player1");
+        player2Card = new JButton("player2");
+        player3Card =  new JButton("player3");
+        yourCard.setBounds(205 , 240 , 70 ,40);
+        player1Card.setBounds(400, 125 , 70 , 40);
+        player2Card.setBounds(205, 10 , 70 , 40);
+        player3Card.setBounds(10, 125 , 70 , 40);
 
-        playersCardPanel.add(you);
-        playersCardPanel.add(player1);
-        playersCardPanel.add(player2);
-        playersCardPanel.add(player3);
+        playersCardPanel.add(yourCard);
+        playersCardPanel.add(player1Card);
+        playersCardPanel.add(player2Card);
+        playersCardPanel.add(player3Card);
 
         add(playersCardPanel,BorderLayout.CENTER);
     }
@@ -70,24 +70,24 @@ public class GUI extends JFrame {
     public void setButtonsText(Player player, Card card) {
         String stringCard = card.convertCardToString();
         if(player.equals(game.you)){
-            you.setText(stringCard);
+            yourCard.setText(stringCard);
         }
         if(player.equals(game.player1)){
-            player1.setText(stringCard);
+            player1Card.setText(stringCard);
         }
         if(player.equals(game.player2)){
-            player2.setText(stringCard);
+            player2Card.setText(stringCard);
         }
         if(player.equals(game.player3)){
-            player3.setText(stringCard);
+            player3Card.setText(stringCard);
         }
     }
 
     public void setButtonsTextEmpty() {
-        you.setText("");
-        player1.setText("");
-        player2.setText("");
-        player3.setText("");
+        yourCard.setText("");
+        player1Card.setText("");
+        player2Card.setText("");
+        player3Card.setText("");
     }
 
 
