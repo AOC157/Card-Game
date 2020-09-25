@@ -18,18 +18,48 @@ public class GUI extends JFrame {
     JButton player1Card;
     JButton player2Card;
     JButton player3Card;
+    JLabel you;
+    JLabel player1;
+    JLabel player2;
+    JLabel player3;
 
 
     public GUI(Game game) throws HeadlessException {
         this.game = game;
+
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
+        createGamePanel();
+    }
+
+    private void createGamePanel() {
         gamePanel = new JPanel();
         gamePanel.setLayout(null);
 
         createMyButtonList();
 
         createTurnCardsButton();
+
+        createLabels();
+
+        add(gamePanel,BorderLayout.CENTER);
+    }
+
+    private void createLabels() {
+        you = new JLabel("YOU");
+        player1 = new JLabel("PLAYER1");
+        player2 = new JLabel("PLAYER2");
+        player3 = new JLabel("PLAYER3");
+
+        you.setBounds(227 , 270, 70 ,40);
+        player1.setBounds(408 , 155 , 70 ,40);
+        player2.setBounds(213 , 40, 70 ,40);
+        player3.setBounds(18 , 155 , 70 ,40);
+
+        gamePanel.add(you);
+        gamePanel.add(player1);
+        gamePanel.add(player2);
+        gamePanel.add(player3);
     }
 
     private void createTurnCardsButton() {
@@ -47,7 +77,6 @@ public class GUI extends JFrame {
         gamePanel.add(player2Card);
         gamePanel.add(player3Card);
 
-        add(gamePanel,BorderLayout.CENTER);
     }
 
     public JButton makeButton(String card) {
