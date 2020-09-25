@@ -12,8 +12,8 @@ public class GUI extends JFrame {
     public static Card myCard;
     Game game;
     JButton button;
-    JPanel playersCardPanel;
-    JPanel buttonPanel;
+    JPanel gamePanel;
+    JPanel myCardPanel;
     JButton yourCard;
     JButton player1Card;
     JButton player2Card;
@@ -23,15 +23,16 @@ public class GUI extends JFrame {
     public GUI(Game game) throws HeadlessException {
         this.game = game;
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
+
+        gamePanel = new JPanel();
+        gamePanel.setLayout(null);
+
         createMyButtonList();
 
         createTurnCardsButton();
     }
 
     private void createTurnCardsButton() {
-        playersCardPanel = new JPanel();
-        playersCardPanel.setLayout(null);
-
         yourCard = new JButton("you");
         player1Card = new JButton("player1");
         player2Card = new JButton("player2");
@@ -41,30 +42,30 @@ public class GUI extends JFrame {
         player2Card.setBounds(205, 10 , 70 , 40);
         player3Card.setBounds(10, 125 , 70 , 40);
 
-        playersCardPanel.add(yourCard);
-        playersCardPanel.add(player1Card);
-        playersCardPanel.add(player2Card);
-        playersCardPanel.add(player3Card);
+        gamePanel.add(yourCard);
+        gamePanel.add(player1Card);
+        gamePanel.add(player2Card);
+        gamePanel.add(player3Card);
 
-        add(playersCardPanel,BorderLayout.CENTER);
+        add(gamePanel,BorderLayout.CENTER);
     }
 
     public JButton makeButton(String card) {
         JButton button = new JButton(card);
-        ActionListener listener = new ButtonListener(card,buttonPanel,button);
+        ActionListener listener = new ButtonListener(card,myCardPanel,button);
         button.addActionListener(listener);
         return button;
     }
 
     public void createMyButtonList(){
-        buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2, 7));
+        myCardPanel = new JPanel();
+        myCardPanel.setLayout(new GridLayout(2, 7));
         for(int index = 0; index < game.you.playerCard.size(); index++) {
             button = makeButton(game.you.playerCard.get(index).convertCardToString());
-            buttonPanel.add(button);
+            myCardPanel.add(button);
         }
-        buttonPanel.setVisible(true);
-        add(buttonPanel,BorderLayout.SOUTH);
+        myCardPanel.setVisible(true);
+        add(myCardPanel,BorderLayout.SOUTH);
     }
 
     public void setButtonsText(Player player, Card card) {
