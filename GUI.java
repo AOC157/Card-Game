@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
     private static final int FRAME_WIDTH = 500;
-    private static final int FRAME_HEIGHT = 270;
+    private static final int FRAME_HEIGHT = 400;
     public static Card myCard;
     Game game;
     JButton button;
@@ -36,10 +36,10 @@ public class GUI extends JFrame {
         player1 = new JButton("player1");
         player2 = new JButton("player2");
         player3 =  new JButton("player3");
-        you.setBounds(205 , 130 , 70 ,40);
-        player1.setBounds(400, 65 , 70 , 40);
+        you.setBounds(205 , 240 , 70 ,40);
+        player1.setBounds(400, 125 , 70 , 40);
         player2.setBounds(205, 10 , 70 , 40);
-        player3.setBounds(10, 65 , 70 , 40);
+        player3.setBounds(10, 125 , 70 , 40);
 
         playersCardPanel.add(you);
         playersCardPanel.add(player1);
