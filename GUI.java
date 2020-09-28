@@ -59,8 +59,8 @@ public class GUI extends JFrame {
 
         kingCard.setFont(BIG_FONT);
         scores.setFont(SMALL_FONT);
-        kingCard.setBounds(175, 110, 200 ,40);
-        scores.setBounds(190, 150 , 200 ,40);
+        kingCard.setBounds(175, 95, 200 ,40);
+        scores.setBounds(190, 135 , 200 ,40);
         you.setBounds(227 , 270, 70 ,40);
         player1.setBounds(408 , 155 , 70 ,40);
         player2.setBounds(213 , 40, 70 ,40);
