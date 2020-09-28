@@ -119,9 +119,8 @@ public class Main {
             else{
                 System.out.print("your team lost this turn");
             }
-            int myTeamScore = game.you.score + game.player2.score;
-            int rivalScore = game.player1.score + game.player3.score;
-            System.out.println("(* " + myTeamScore + "  :  " + rivalScore + ")");
+
+            frame.updateScores();
 
             if(game.finishCheck()) {
                 break;

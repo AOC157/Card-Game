@@ -132,6 +132,12 @@ public class GUI extends JFrame {
         player3Card.setText("");
     }
 
+    public void updateScores() {
+        int myTeamScore = game.you.score + game.player2.score;
+        int rivalScore = game.player1.score + game.player3.score;
+        scores.setText("YOU " + myTeamScore + " : " + rivalScore + " COM");
+    }
+
 
     static class ButtonListener implements ActionListener{
 
