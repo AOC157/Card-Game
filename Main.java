@@ -133,7 +133,7 @@ public class Main {
             game.player2.printAllCards();
             game.player3.printAllCards();
 
-            sleep(2000);
+            sleep(4000);
             frame.setButtonsTextEmpty();
 
             frame.turnWinner.setText("");
