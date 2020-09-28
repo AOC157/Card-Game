@@ -26,6 +26,7 @@ public class GUI extends JFrame {
     JLabel player3;
     JLabel kingCard;
     JLabel scores;
+    JLabel turnWinner;
 
 
     public GUI(Game game) throws HeadlessException {
@@ -52,6 +53,7 @@ public class GUI extends JFrame {
     private void createLabels() {
         kingCard = new JLabel("king card is \"" + game.kingCard + "\" !");
         scores = new JLabel("YOU 0 : 0 COM");
+        turnWinner = new JLabel("");
         you = new JLabel("YOU");
         player1 = new JLabel("PLAYER1");
         player2 = new JLabel("PLAYER2");
@@ -59,8 +61,10 @@ public class GUI extends JFrame {
 
         kingCard.setFont(BIG_FONT);
         scores.setFont(SMALL_FONT);
+        turnWinner.setFont(SMALL_FONT);
         kingCard.setBounds(175, 95, 200 ,40);
-        scores.setBounds(190, 135 , 200 ,40);
+        scores.setBounds(190, 130 , 200 ,40);
+        turnWinner.setBounds(165, 160 ,200,40);
         you.setBounds(227 , 270, 70 ,40);
         player1.setBounds(408 , 155 , 70 ,40);
         player2.setBounds(213 , 40, 70 ,40);
@@ -68,6 +72,7 @@ public class GUI extends JFrame {
 
         gamePanel.add(kingCard);
         gamePanel.add(scores);
+        gamePanel.add(turnWinner);
         gamePanel.add(you);
         gamePanel.add(player1);
         gamePanel.add(player2);
