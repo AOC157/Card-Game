@@ -9,7 +9,8 @@ import java.awt.event.ActionListener;
 public class GUI extends JFrame {
     private static final int FRAME_WIDTH = 500;
     private static final int FRAME_HEIGHT = 400;
-    private static final Font FONT = new Font("Arial", Font.PLAIN, 18);
+    private static final Font BIG_FONT = new Font("Arial", Font.PLAIN, 18);
+    private static final Font SMALL_FONT = new Font("Arial", Font.PLAIN, 14);
     public static Card myCard;
     Game game;
     JButton button;
@@ -24,6 +25,7 @@ public class GUI extends JFrame {
     JLabel player2;
     JLabel player3;
     JLabel kingCard;
+    JLabel scores;
 
 
     public GUI(Game game) throws HeadlessException {
@@ -49,19 +51,23 @@ public class GUI extends JFrame {
 
     private void createLabels() {
         kingCard = new JLabel("king card is \"" + game.kingCard + "\" !");
+        scores = new JLabel("YOU 0 : 0 COM");
         you = new JLabel("YOU");
         player1 = new JLabel("PLAYER1");
         player2 = new JLabel("PLAYER2");
         player3 = new JLabel("PLAYER3");
 
-        kingCard.setFont(FONT);
+        kingCard.setFont(BIG_FONT);
+        scores.setFont(SMALL_FONT);
         kingCard.setBounds(175, 110, 200 ,40);
+        scores.setBounds(190, 150 , 200 ,40);
         you.setBounds(227 , 270, 70 ,40);
         player1.setBounds(408 , 155 , 70 ,40);
         player2.setBounds(213 , 40, 70 ,40);
         player3.setBounds(18 , 155 , 70 ,40);
 
         gamePanel.add(kingCard);
+        gamePanel.add(scores);
         gamePanel.add(you);
         gamePanel.add(player1);
         gamePanel.add(player2);
