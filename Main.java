@@ -48,11 +48,13 @@ public class Main {
                 game.turnKing.deleteCard(start);
             }
             else{
+                frame.myTurn.setText("it's your turn");
                 while (true){
                     sleep(200);
                     start = GUI.myCard;
                     if(start != null) break;
                 }
+                frame.myTurn.setText("");
                 game.you.deleteCard(start);
             }
             frame.setButtonsText(game.turnKing , start);
@@ -62,14 +64,15 @@ public class Main {
             if(!game.you.equals(momentPlayer)){
                 card1 = momentPlayer.playTurn(game.kingCard,start);
                 momentPlayer.deleteCard(card1);
-
             }
             else{
+                frame.myTurn.setText("it's your turn");
                 while (true){
                     sleep(200);
                     card1 = GUI.myCard;
                     if(card1 != null) break;
                 }
+                frame.myTurn.setText("");
                 game.you.deleteCard(card1);
             }
             frame.setButtonsText(momentPlayer , card1);
@@ -81,11 +84,13 @@ public class Main {
                 momentPlayer.deleteCard(card2);
             }
             else{
+                frame.myTurn.setText("it's your turn");
                 while (true){
                     sleep(200);
                     card2 = GUI.myCard;
                     if(card2 != null) break;
                 }
+                frame.myTurn.setText("");
                 game.you.deleteCard(card2);
             }
             frame.setButtonsText(momentPlayer , card2);
@@ -97,11 +102,13 @@ public class Main {
                 momentPlayer.deleteCard(card3);
             }
             else{
+                frame.myTurn.setText("it's your turn");
                 while (true){
                     sleep(200);
                     card3 = GUI.myCard;
                     if(card3 != null) break;
                 }
+                frame.myTurn.setText("");
                 game.you.deleteCard(card3);
             }
             frame.setButtonsText(momentPlayer , card3);
