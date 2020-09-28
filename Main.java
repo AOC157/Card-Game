@@ -43,8 +43,6 @@ public class Main {
 
             int playerNumber = game.numberOfPlayerAfterTurnKing();
 
-
-
             if(!game.you.equals(game.turnKing)) {
                 start = game.turnKing.playTurn(game.kingCard);
                 game.turnKing.deleteCard(start);
@@ -113,12 +111,7 @@ public class Main {
 
             winner.score++;
 
-            if(winner.equals(game.you) || winner.equals(game.player2)){
-                System.out.print("your team won this turn");
-            }
-            else{
-                System.out.print("your team lost this turn");
-            }
+            frame.showWinner(winner);
 
             frame.updateScores();
 
@@ -136,9 +129,9 @@ public class Main {
             sleep(2000);
             frame.setButtonsTextEmpty();
 
+            frame.turnWinner.setText("");
+
             GUI.myCard = null;
-
-
         }
     }
 }

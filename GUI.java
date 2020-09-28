@@ -143,6 +143,15 @@ public class GUI extends JFrame {
         scores.setText("YOU " + myTeamScore + " : " + rivalScore + " COM");
     }
 
+    public void showWinner(Player winner) {
+        if(winner.equals(game.you) || winner.equals(game.player2)){
+            turnWinner.setText("your team won this turn");
+        }
+        else {
+            turnWinner.setText("your team lost this turn");
+        }
+    }
+
 
     static class ButtonListener implements ActionListener{
 
