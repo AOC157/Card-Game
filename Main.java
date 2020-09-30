@@ -11,6 +11,13 @@ public class Main {
 
         game.declareKingPlayer();
 
+        if (game.kingPlayer.equals(game.you)) {
+            StartingFrame start  = new StartingFrame(game);
+            start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            start.setResizable(false);
+            start.setVisible(true);
+        }
+
         game.giveCards(5);
 
         game.you.printAllCards();
