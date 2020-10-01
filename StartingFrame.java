@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class StartingFrame extends JFrame {
     private static final int FRAME_WIDTH = 370;
     private static final int FRAME_HEIGHT = 200;
+    private static final Font FONT = new Font("Arial", Font.PLAIN, 16);
     public Game game;
     public ButtonGroup types;
     private static JRadioButton d;
@@ -82,6 +83,11 @@ public class StartingFrame extends JFrame {
         g = new JRadioButton("g");
         k = new JRadioButton("k");
         p = new JRadioButton("p");
+
+        d.setFont(FONT);
+        g.setFont(FONT);
+        p.setFont(FONT);
+        k.setFont(FONT);
 
         types.add(d);
         types.add(g);
