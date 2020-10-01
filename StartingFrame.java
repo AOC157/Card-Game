@@ -1,12 +1,14 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StartingFrame extends JFrame {
-    private static final int FRAME_WIDTH = 300;
+    private static final int FRAME_WIDTH = 370;
     private static final int FRAME_HEIGHT = 200;
     public Game game;
     public ButtonGroup types;
@@ -19,8 +21,20 @@ public class StartingFrame extends JFrame {
         this.game = game;
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
 
+        addMyCards();
         createTypes();
         createEnter();
+    }
+
+    private void addMyCards() {
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(new EtchedBorder(), "your cards"));
+        panel.setLayout(new GridLayout(1,5));
+        for (int index = 0; index < game.you.playerCard.size(); index++){
+            JButton card = new JButton(game.you.playerCard.get(index).convertCardToString());
+            panel.add(card);
+        }
+        add(panel,BorderLayout.NORTH);
     }
 
     private void createEnter() {
@@ -28,9 +42,8 @@ public class StartingFrame extends JFrame {
         ActionListener listener = new EnterListener(game);
         enter.addActionListener(listener);
         JPanel panel = new JPanel();
-        enter.setBounds(50,100 ,40,10);
         panel.add(enter);
-        add(panel);
+        add(panel,BorderLayout.SOUTH);
     }
 
     class EnterListener implements ActionListener{
@@ -79,6 +92,6 @@ public class StartingFrame extends JFrame {
         panel.add(p);
         panel.add(g);
         panel.add(k);
-        add(panel, BorderLayout.NORTH);
+        add(panel, BorderLayout.CENTER);
     }
 }
