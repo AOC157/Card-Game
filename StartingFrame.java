@@ -14,25 +14,26 @@ public class StartingFrame extends JFrame {
     private static JRadioButton g;
     private static JRadioButton k;
     private static JRadioButton p;
-    private JButton enter;
+
     public StartingFrame(Game game) throws HeadlessException {
         this.game = game;
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
 
         createTypes();
         createEnter();
-
-
     }
 
     private void createEnter() {
-        enter = new JButton("Enter");
+        JButton enter = new JButton("Enter");
         ActionListener listener = new EnterListener(game);
         enter.addActionListener(listener);
-        add(enter);
+        JPanel panel = new JPanel();
+        enter.setBounds(50,100 ,40,10);
+        panel.add(enter);
+        add(panel);
     }
 
-    static class EnterListener implements ActionListener{
+    class EnterListener implements ActionListener{
         Game game;
 
         public EnterListener(Game game) {
@@ -43,22 +44,26 @@ public class StartingFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(d.isSelected()){
                 game.kingCard = 'd';
+                dispose();
             }
             else if(g.isSelected()){
                 game.kingCard = 'g';
+                dispose();
             }
             else if(k.isSelected()){
                 game.kingCard = 'k';
+                dispose();
             }
             else if(p.isSelected()){
                 game.kingCard = 'p';
+                dispose();
             }
         }
     }
 
     private void createTypes() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(4,1));
+        panel.setLayout(new GridLayout(1,4));
         types = new ButtonGroup();
         d = new JRadioButton("d");
         g = new JRadioButton("g");
@@ -74,6 +79,6 @@ public class StartingFrame extends JFrame {
         panel.add(p);
         panel.add(g);
         panel.add(k);
-        add(panel);
+        add(panel, BorderLayout.NORTH);
     }
 }

@@ -11,12 +11,7 @@ public class Main {
 
         game.declareKingPlayer();
 
-        if (game.kingPlayer.equals(game.you)) {
-            StartingFrame start  = new StartingFrame(game);
-            start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            start.setResizable(false);
-            start.setVisible(true);
-        }
+        //game.kingPlayer = game.you;
 
         game.giveCards(5);
 
@@ -25,7 +20,19 @@ public class Main {
         game.player2.printAllCards();
         game.player3.printAllCards();
 
-        game.declareKingCard();
+
+        if (game.kingPlayer.equals(game.you)) {
+            StartingFrame start = new StartingFrame(game);
+            start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            start.setResizable(false);
+            start.setVisible(true);
+            while (start.isDisplayable()) {
+                sleep(200);
+            }
+        }
+        else{
+            game.declareKingCard();
+        }
 
         game.giveCards(8);
 
