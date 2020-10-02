@@ -13,12 +13,6 @@ public class Main {
 
         game.giveCards(5);
 
-        game.you.printAllCards();
-        game.player1.printAllCards();
-        game.player2.printAllCards();
-        game.player3.printAllCards();
-
-
         if (game.kingPlayer.equals(game.you)) {
             StartingFrame start = new StartingFrame(game);
             start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,11 +27,6 @@ public class Main {
         }
 
         game.giveCards(8);
-
-        game.you.printAllCards();
-        game.player1.printAllCards();
-        game.player2.printAllCards();
-        game.player3.printAllCards();
 
         game.turnKing = game.kingPlayer;
 
@@ -70,7 +59,6 @@ public class Main {
                 game.you.deleteCard(start);
             }
             frame.setButtonsText(game.turnKing , start);
-            start.show();
 
             Player momentPlayer = game.convertNumberToPlayer(playerNumber);
             if(!game.you.equals(momentPlayer)){
@@ -88,7 +76,6 @@ public class Main {
                 game.you.deleteCard(card1);
             }
             frame.setButtonsText(momentPlayer , card1);
-            card1.show();
 
             momentPlayer = game.convertNumberToPlayer(++playerNumber);
             if(!game.you.equals(momentPlayer)){
@@ -106,7 +93,6 @@ public class Main {
                 game.you.deleteCard(card2);
             }
             frame.setButtonsText(momentPlayer , card2);
-            card2.show();
 
             momentPlayer = game.convertNumberToPlayer(playerNumber + 1);
             if(!game.you.equals(momentPlayer)){
@@ -124,7 +110,6 @@ public class Main {
                 game.you.deleteCard(card3);
             }
             frame.setButtonsText(momentPlayer , card3);
-            card3.show();
 
             Player winner = game.defineWinner(game.turnKing,start,card1,card2,card3,game.kingCard);
 
@@ -140,11 +125,6 @@ public class Main {
             }
 
             game.turnKing = winner;
-
-            game.you.printAllCards();
-            game.player1.printAllCards();
-            game.player2.printAllCards();
-            game.player3.printAllCards();
 
             sleep(4000);
             frame.setButtonsTextEmpty();

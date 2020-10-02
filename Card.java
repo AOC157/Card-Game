@@ -16,11 +16,6 @@ public class Card {
         return card.type != kingCard;
     }
 
-    public void show() {
-        System.out.println(number + "" + type);
-    }
-
-
     public String convertCardToString() {
         return (number + "" + type);
     }

@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
     ArrayList<Card> playerCard;
@@ -11,23 +10,6 @@ public class Player {
         playerCard = new ArrayList<>();
         score = 0;
     }
-
-    public void printAllCards() {
-        for (Card card : playerCard) {
-            System.out.print(card.number + "" + card.type + "   ");
-        }
-        System.out.println();
-    }
-    public Card playTurn() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("input number of your card (1 - 13): ");
-        int cardNumber = scanner.nextInt();
-        System.out.print("input type of your card (g , k , p , d): ");
-        char cardType = scanner.next().charAt(0);
-        System.out.print('*');
-        return new Card(cardType , cardNumber);
-    }
-
     public Card playTurn(char kingCard,Card start,Card card1,Card card2) {
         if(!start.isBigger(card1,kingCard) && card1.isBigger(card2,kingCard)){
             if(isThereType(start.type)){

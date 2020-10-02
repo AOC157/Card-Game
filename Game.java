@@ -65,7 +65,6 @@ public class Game {
                 this.kingPlayer = this.player3;
                 break;
         }
-        System.out.println("king is player" + playerNumber);
     }
 
     public void giveCards( int givenCardNumber) {
@@ -108,7 +107,6 @@ public class Game {
         else{
             kingCard = declareKingCardForCom(kingPlayer.playerCard);
         }
-        System.out.println("king card type is " + kingCard);
     }
 
     private char declareKingCardForCom(ArrayList<Card> playerCard) {
@@ -271,11 +269,9 @@ public class Game {
 
     public boolean finishCheck() {
         if(you.score + player2.score == 7){
-            System.out.println("your team won");
             return true;
         }
         if(player1.score + player3.score == 7){
-            System.out.println("your team lost");
             return true;
         }
         return false;
