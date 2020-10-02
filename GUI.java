@@ -152,11 +152,21 @@ public class GUI extends JFrame {
 
     public void showWinner(Player winner) {
         if(winner.equals(game.you) || winner.equals(game.player2)){
-            turnWinner.setText("your team won this turn");
+            turnWinner.setText("  your team won this turn");
         }
         else {
-            turnWinner.setText("your team lost this turn");
+            turnWinner.setText("  your team lost this turn");
         }
+    }
+
+    public void finish() {
+        if(game.you.score + game.player2.score == 7){
+            kingCard.setText("  your team won");
+        }
+        else {
+            kingCard.setText(" your team lost");
+        }
+        turnWinner.setText("");
     }
 
 

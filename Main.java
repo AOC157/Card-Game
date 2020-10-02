@@ -11,8 +11,6 @@ public class Main {
 
         game.declareKingPlayer();
 
-        //game.kingPlayer = game.you;
-
         game.giveCards(5);
 
         game.you.printAllCards();
@@ -137,6 +135,7 @@ public class Main {
             frame.updateScores();
 
             if(game.finishCheck()) {
+                frame.finish();
                 break;
             }
 
